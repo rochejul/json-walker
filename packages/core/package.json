@@ -36,6 +36,7 @@
   "devDependencies": {},
   "peerDependencies": {
     "@json-walker/jest-utils": "*",
+    "@json-walker/types": "*",
     "@json-walker/util": "*"
   }
 }

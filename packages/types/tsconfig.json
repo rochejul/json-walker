@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "outDir": "./build",
+    "paths": {
+      "@web-component-attribute-polyfill/browser": [
+        "./src/browser.d.ts",
+        "../browser/build/bundle.cjs"
+      ],
+      "@web-component-attribute-polyfill/core": [
+        "./src/core.d.ts",
+        "../core/src/engine.js"
+      ]
+    }
+  },
+  "include": ["./src"],
+  "exclude": ["./test/index.errors.ts"],
+  "references": []
+}

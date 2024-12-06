@@ -1,0 +1,70 @@
+{
+  "name": "json-walker",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "JSON walker api (nodejs/web) to walk through EcmaScript objects.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:audit": "npm audit --workspaces --include-workspace-root",
+    "dev:check": "npm test && npm run dev:styling",
+    "dev:format": "prettier --check \"./**/*.{ts,tsx,js,mjs,cjs,md}\"",
+    "dev:format:check": "prettier --write \"./**/*.{ts,tsx,js,mjs,cjs,md}\"",
+    "dev:linting": "npm run dev:linting --workspaces --if-present",
+    "dev:styling": "npm run dev:format && npm run dev:linting",
+    "prepare": "husky && npx replace-in-file '#!/usr/bin/env sh' '#!/usr/bin/env bash' '.husky/_/husky.sh' --quiet && npx replace-in-file 'sh -e' 'bash -e' '.husky/_/husky.sh' --quiet",
+    "test": "npm run test --workspaces --if-present",
+    "test:coverage": "npm run test:coverage --workspaces --if-present"
+  },
+  "//": {
+    "dev:audit": "Checks we don't have vulnearbilities",
+    "dev:check": "Run tests and styling over packages",
+    "dev:format": "Format files over packages",
+    "dev:format:check": "Check files format over packages",
+    "dev:linting": "Lint files over packages",
+    "dev:styling": "Format and lint files over packages",
+    "test": "Run tests over packages",
+    "test:coverage": "Run tests over packages and see coverage reports"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "19.6.0",
+    "@commitlint/config-conventional": "19.6.0",
+    "eslint": "9.16.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-jest": "28.9.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "husky": "9.1.7",
+    "prettier": "3.4.2"
+  },
+  "overrides": {
+    "eslint": "$eslint"
+  },
+  "keywords": [
+    "JSON",
+    "walker"
+  ],
+  "author": {
+    "name": "Julien Roche",
+    "email": "roche.jul@gmail.com",
+    "url": "https://julienroche.blogspot.com/"
+  },
+  "homepage": "https://github.com/rochejul/json-walker#readme",
+  "bugs": {
+    "url": "https://github.com/rochejul/json-walker/issues",
+    "email": "roche.jul@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rochejul/json-walker.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "^16.10.0 || ^18.12.0 || >=20.0.0"
+  },
+  "volta": {
+    "node": "20.15.0",
+    "npm": "10.7.0"
+  }
+}

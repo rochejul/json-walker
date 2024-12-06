@@ -1,0 +1,38 @@
+{
+  "name": "@json-walker/util",
+  "version": "1.0.0",
+  "private": "true",
+  "type": "module",
+  "description": "Set of utilities libraries",
+  "main": "./src/index.js",
+  "files": [
+    "./src"
+  ],
+  "scripts": {
+    "dev:linting": "eslint --config=eslint.config.js",
+    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --enable-source-maps --experimental-vm-modules\" npx jest --no-cache --config jest.config.json",
+    "test:coverage": "npm run test -- --coverage"
+  },
+  "//": {
+    "dev:linting": "Lint files",
+    "test": "Run Jest tests",
+    "test:coverage": "Run Jest tests and collect coverage"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "^16.10.0 || ^18.12.0 || >=20.0.0"
+  },
+  "volta": {
+    "node": "20.15.0",
+    "npm": "10.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rochejul/json-walker.git",
+    "directory": "packages/util"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "@json-walker/jest-utils": "*"
+  }
+}

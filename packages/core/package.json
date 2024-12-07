@@ -33,10 +33,11 @@
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {},
   "peerDependencies": {
     "@json-walker/jest-utils": "*",
-    "@json-walker/types": "*",
     "@json-walker/util": "*"
+  },
+  "dependencies": {
+    "@json-walker/types": "1.0.0"
   }
 }

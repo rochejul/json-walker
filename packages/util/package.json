@@ -31,8 +31,10 @@
     "url": "https://github.com/rochejul/json-walker.git",
     "directory": "packages/util"
   },
-  "devDependencies": {},
   "peerDependencies": {
     "@json-walker/jest-utils": "*"
+  },
+  "dependencies": {
+    "@json-walker/types": "1.0.0"
   }
 }

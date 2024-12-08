@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Core implementation of the walker",
-  "main": "./src/index.js",
+  "main": "./src/walker.js",
   "files": [
     "./src"
   ],

@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "dev:audit": "npm audit --workspaces --include-workspace-root",
+    "dev:build": "npm run dev:build --workspaces --if-present",
     "dev:check": "npm test && npm run dev:styling",
     "dev:format": "prettier --check \"./**/*.{ts,tsx,js,mjs,cjs,md}\"",
     "dev:format:check": "prettier --write \"./**/*.{ts,tsx,js,mjs,cjs,md}\"",
@@ -20,6 +21,7 @@
   },
   "//": {
     "dev:audit": "Checks we don't have vulnearbilities",
+    "dev:build": "Build the project over packages",
     "dev:check": "Run tests and styling over packages",
     "dev:format": "Format files over packages",
     "dev:format:check": "Check files format over packages",

@@ -14,6 +14,7 @@
     "partially-covered": "rgba(255,215,0, 0.2)"
   },
   "jest.virtualFolders": [
+    { "name": "browser", "rootPath": "packages/browser" },
     { "name": "core", "rootPath": "packages/core" },
     { "name": "util", "rootPath": "packages/util" }
   ],

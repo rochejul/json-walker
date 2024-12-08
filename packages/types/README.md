@@ -1,3 +1,25 @@
+<p>
+    <a href="https://www.npmjs.com/package/@json-walker/types">
+    <img src="https://img.shields.io/npm/v/@json-walker/types" alt="npm version">
+  </a>
+
+  <a href="https://github.com/rochejul/json-walker/blob/main/LICENSE">
+    <img src="https://img.shields.io/npm/l/@json-walker/types.svg" alt="license">
+  </a>
+
+  <a href="https://packagephobia.now.sh/result?p=@json-walker/types">
+    <img src="https://packagephobia.now.sh/badge?p=@json-walker/types" alt="install size">
+  </a>
+
+  <a href="https://snyk.io/test/github/rochejul/web-component-attribute-polyfilln">
+    <img src="https://snyk.io/test/github/rochejul/json-walker/badge.svg?targetFile=packages/types/package.json" alt="Known Vulnerabilities">
+  </a>
+
+  <a href="https://github.com/rochejul/json-walker/actions/workflows/node.js.yml">
+    <img src="https://github.com/rochejul/json-walker/actions/workflows/node.js.yml/badge.svg" alt="Node.js Unit Test">
+  </a>
+</p>
+
 # @json-walker/types
 
 Typescript definition of the walker

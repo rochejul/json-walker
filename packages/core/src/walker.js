@@ -34,3 +34,32 @@ export class Walker {
     return optionalWalkerMetadata;
   }
 }
+
+export class IterableWalker {
+  #walker;
+
+  /**
+   * @param {*} value
+   * @throws {ObjectRequiredError}
+   */
+  constructor(value) {
+    if (value === undefined || value === null) {
+      throw new ObjectRequiredError();
+    }
+
+    this.#walker = new Walker(value);
+  }
+
+  next() {
+    const optionalWalkerMetadata = this.#walker.next();
+
+    return {
+      value: optionalWalkerMetadata.value,
+      done: optionalWalkerMetadata.isNone(),
+    };
+  }
+
+  [Symbol.iterator]() {
+    return this;
+  }
+}

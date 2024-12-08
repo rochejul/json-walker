@@ -56,8 +56,13 @@ declare module '@json-walker/core' {
     next(): Option<WalkerMetadata>;
   }
 
+  class IterableWalker implements Iterator<unknown> {
+    next(): IteratorReturnResult<unknown>;
+  }
+
   export {
     Walker,
+    IterableWalker,
     ObjectRequiredError,
     WalkerPath,
     WalkerPathExpression,

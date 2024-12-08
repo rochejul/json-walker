@@ -3,7 +3,7 @@
     <img src="https://img.shields.io/npm/v/@json-walker/browser" alt="npm version">
   </a>
 
-  <a href="https://github.com/rochejul/web-component-attribute-polyfill/blob/main/LICENSE">
+  <a href="https://github.com/rochejul/json-walker/blob/main/LICENSE">
     <img src="https://img.shields.io/npm/l/@json-walker/browser.svg" alt="license">
   </a>
 
@@ -11,12 +11,12 @@
     <img src="https://packagephobia.now.sh/badge?p=@json-walker/browser" alt="install size">
   </a>
 
-  <a href="https://snyk.io/test/github/rochejul/web-component-attribute-polyfill">
-    <img src="https://snyk.io/test/github/rochejul/web-component-attribute-polyfill/badge.svg?targetFile=packages/browser/package.json" alt="Known Vulnerabilities">
+  <a href="https://snyk.io/test/github/rochejul/json-walker">
+    <img src="https://snyk.io/test/github/rochejul/json-walker/badge.svg?targetFile=packages/browser/package.json" alt="Known Vulnerabilities">
   </a>
 
-  <a href="https://github.com/rochejul/web-component-attribute-polyfill/actions/workflows/node.js.yml">
-    <img src="https://github.com/rochejul/web-component-attribute-polyfill/actions/workflows/node.js.yml/badge.svg" alt="Node.js Unit Test">
+  <a href="https://github.com/rochejul/json-walker/actions/workflows/node.js.yml">
+    <img src="https://github.com/rochejul/json-walker/actions/workflows/node.js.yml/badge.svg" alt="Node.js Unit Test">
   </a>
 </p>
 

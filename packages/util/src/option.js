@@ -6,10 +6,19 @@ class Option {
     throw new IllegalInstantationError();
   }
 
+  /**
+   *
+   * @param {*} value
+   * @returns {Option<*>}
+   */
   static from(value) {
     return Object.seal(new PrivateOption(value));
   }
 
+  /**
+   *
+   * @returns {Option<null>}
+   */
   static none() {
     return Object.seal(new PrivateOption(null));
   }
@@ -22,14 +31,23 @@ class PrivateOption {
     this.#value = value;
   }
 
+  /**
+   * @returns {boolean}
+   */
   isNone() {
     return isNull(this.#value) || isUndefined(this.#value);
   }
 
+  /**
+   * @returns {boolean}
+   */
   isSome() {
     return !this.isNone();
   }
 
+  /**
+   * @returns {*}
+   */
   get value() {
     return this.#value;
   }

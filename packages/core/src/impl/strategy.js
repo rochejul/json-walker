@@ -3,6 +3,10 @@ import { ArrayWalker } from './array-walker';
 import { DeadEndWalker } from './dead-end-walker';
 import { ObjectWalker } from './object-walker';
 
+/**
+ * @param {{ value: *, currentWalkerPath: WalkerPath }} param
+ * @returns {Walker}
+ */
 export function getWalker({ value, currentWalkerPath }) {
   const propertyType = getPropertyType(value);
 

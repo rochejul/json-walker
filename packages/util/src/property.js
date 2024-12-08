@@ -102,6 +102,11 @@ const getPropertyTypePredicates = [
   },
 ];
 
+/**
+ *
+ * @param {*} value
+ * @returns {string}
+ */
 export function getPropertyType(value) {
   const predicate = getPropertyTypePredicates.find(({ predicate }) =>
     predicate(value),

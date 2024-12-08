@@ -5,7 +5,14 @@ import { WalkerPath } from './models/walker-path';
 export { ObjectRequiredError } from './exceptions/object-required-error';
 
 export class Walker {
+  /**
+   * @type {Walker}
+   */
   #walker;
+
+  /**
+   * @type {Option<WalkerMetadata>}
+   */
   #lastOptionalWalkerMetadata;
 
   /**
@@ -23,6 +30,9 @@ export class Walker {
     });
   }
 
+  /**
+   * @returns {Option<WalkerMetadata>}
+   */
   nextStep() {
     if (this.#lastOptionalWalkerMetadata?.isNone()) {
       return this.#lastOptionalWalkerMetadata;

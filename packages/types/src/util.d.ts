@@ -1,4 +1,28 @@
 declare module '@json-walker/util' {
+  type WalkerPropertyType =
+    | 'undefined'
+    | 'null'
+    | 'array'
+    | 'arraybuffer'
+    | 'bigint'
+    | 'bigint64array'
+    | 'boolean'
+    | 'dataview'
+    | 'date'
+    | 'error'
+    | 'function'
+    | 'generator'
+    | 'map'
+    | 'number'
+    | 'object'
+    | 'string'
+    | 'symbol'
+    | 'typedarray'
+    | 'weakmap'
+    | 'weakref'
+    | 'weakset'; // Based on https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
+  // And on https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+
   class Option<T> {
     private constructor();
 
@@ -9,5 +33,7 @@ declare module '@json-walker/util' {
     static from<F>(value: F): Option<F>;
   }
 
-  export { Option };
+  function getPropertyType(value: unknown): WalkerPropertyType;
+
+  export { Option, WalkerPropertyType, getPropertyType };
 }

@@ -1,30 +1,7 @@
 declare module '@json-walker/core' {
-  import type { Option } from '@json-walker/util';
+  import type { Option, WalkerPropertyType } from '@json-walker/util';
 
   type WalkerPathExpressionType = 'member' | 'array';
-  type WalkerPropertyType =
-    | 'undefined'
-    | 'null'
-    | 'array'
-    | 'arraybuffer'
-    | 'bigint'
-    | 'bigint64array'
-    | 'boolean'
-    | 'dataview'
-    | 'date'
-    | 'error'
-    | 'function'
-    | 'generator'
-    | 'map'
-    | 'number'
-    | 'object'
-    | 'string'
-    | 'symbol'
-    | 'typedarray'
-    | 'weakmap'
-    | 'weakref'
-    | 'weakset'; // Based on https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
-  // And on https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
   interface BaseWalkerPathExpression {
     readonly type: WalkerPathExpressionType;
@@ -57,7 +34,15 @@ declare module '@json-walker/core' {
     readonly walker: Walker;
   }
 
-  type WalkerMetadata = BaseWalkerMetadata | ObjectWalkerMetadata;
+  interface ArrayWalkerMetadata extends BaseWalkerMetadata {
+    readonly propertyType: 'array';
+    readonly walker: Walker;
+  }
+
+  type WalkerMetadata =
+    | BaseWalkerMetadata
+    | ObjectWalkerMetadata
+    | ArrayWalkerMetadata;
 
   class ObjectRequiredError extends Error {
     constructor();
@@ -79,6 +64,6 @@ declare module '@json-walker/core' {
     WalkerMetadata,
     BaseWalkerMetadata,
     ObjectWalkerMetadata,
-    WalkerPropertyType,
+    ArrayWalkerMetadata,
   };
 }

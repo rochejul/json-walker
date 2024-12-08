@@ -3,18 +3,20 @@ declare module '@json-walker/core' {
 
   type WalkerPathExpressionType = 'member' | 'array';
 
-  interface BaseWalkerPathExpression {
-    readonly type: WalkerPathExpressionType;
+  interface MemberWalkerPathExpression {
+    readonly type: 'member';
     readonly expression: string;
+    toString(): string;
   }
 
   interface ArrayWalkerPathExpression {
     readonly type: 'array';
     readonly expression: number;
+    toString(): string;
   }
 
   type WalkerPathExpression =
-    | BaseWalkerPathExpression
+    | MemberWalkerPathExpression
     | ArrayWalkerPathExpression;
 
   interface WalkerPath {
@@ -24,9 +26,9 @@ declare module '@json-walker/core' {
 
   interface BaseWalkerMetadata {
     readonly propertyName: string;
-    readonly propertyValue: unknown;
+    readonly propertyPath: WalkerPath;
     readonly propertyType: WalkerPropertyType;
-    readonly path: WalkerPath;
+    readonly propertyValue: unknown;
   }
 
   interface ObjectWalkerMetadata extends BaseWalkerMetadata {
@@ -58,7 +60,7 @@ declare module '@json-walker/core' {
     ObjectRequiredError,
     WalkerPath,
     WalkerPathExpression,
-    BaseWalkerPathExpression,
+    MemberWalkerPathExpression,
     ArrayWalkerPathExpression,
     WalkerPathExpressionType,
     WalkerMetadata,

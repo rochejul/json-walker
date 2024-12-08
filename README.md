@@ -30,7 +30,102 @@ We frequently need to go deeply in objects and to have some information, such as
 
 ## Usage
 
-TBD
+We have two usages: `Walker` and `IterableWalker`.
+The first allows to define your own way to iterate.
+The second could be used as an iterable.
+
+### Walker usage
+
+```js
+function grabProperties(value) {
+  const properties = [];
+  const walker = new Walker(value);
+  let optionalWalkerMetadata;
+
+  do {
+    optionalWalkerMetadata = walker.nextStep();
+
+    if (optionalWalkerMetadata.isSome()) {
+      properties.push({
+        path: optionalWalkerMetadata.value.propertyPath.toString(),
+        type: optionalWalkerMetadata.value.propertyType,
+        value: optionalWalkerMetadata.value.propertyValue,
+      });
+    }
+  } while (optionalWalkerMetadata.isSome());
+
+  return properties;
+}
+
+const secondLevel = { label: 'foo' };
+const array = [secondLevel];
+const firstLevel = { records: array };
+const actual = grabProperties(firstLevel);
+
+/* actual content:
+ * [
+    {
+      path: 'records',
+      type: 'array',
+      value: [{ label: 'foo' }],
+    },
+    {
+      path: 'records[0]',
+      type: 'object',
+      value: { label: 'foo' },
+    },
+    {
+      path: 'records[0].label',
+      type: 'string',
+      value: 'foo',
+    },
+  ]
+ */
+```
+
+### IterableWalker usage
+
+```js
+function grabProperties(value) {
+  const properties = [];
+  const walker = new IterableWalker(value);
+
+  for (const value of walker) {
+    properties.push({
+      path: value.propertyPath.toString(),
+      type: value.propertyType,
+      value: value.propertyValue,
+    });
+  }
+
+  return properties;
+}
+
+const secondLevel = { label: 'foo' };
+const array = [secondLevel];
+const firstLevel = { records: array };
+const actual = grabProperties(firstLevel);
+
+/* actual content:
+ * [
+    {
+      path: 'records',
+      type: 'array',
+      value: [{ label: 'foo' }],
+    },
+    {
+      path: 'records[0]',
+      type: 'object',
+      value: { label: 'foo' },
+    },
+    {
+      path: 'records[0].label',
+      type: 'string',
+      value: 'foo',
+    },
+  ]
+ */
+```
 
 ## Commands
 

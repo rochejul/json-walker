@@ -20,6 +20,22 @@
 
 Set of utilities libraries
 
+## WalkerPropertyType
+
+Enum of all possibles property type
+
+## getPropertyType(value): WalkerPropertyType
+
+Get the `WalkerPropertyType` of your value.
+
+## Option
+
+Create an ` Option` object (similar to an ` Optional` in Java);
+
+## check service
+
+It contains a list of methods to check the value depending of the type (such as ` isNull`, èisDate`, etc...).
+
 ## Commands
 
 - `npm run dev:linting`: Lint files

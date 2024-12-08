@@ -24,6 +24,48 @@
 
 Typescript definition of the walker
 
+## Definitions
+
+### Walker
+
+```typescript
+class Walker {
+  constructor(object: unknown);
+  nextStep(): Option<WalkerMetadata>;
+}
+
+interface WalkerMetadata {
+  readonly propertyName: string;
+  readonly propertyPath: WalkerPath;
+  readonly propertyType: WalkerPropertyType;
+  readonly propertyValue: unknown;
+}
+```
+
+### IterableWalker
+
+```typescript
+class IterableWalker implements Iterator<unknown> {
+  next(): IteratorReturnResult<unknown>;
+}
+```
+
+### Option
+
+```typescript
+class Option<T> {
+  private constructor();
+
+  isNone(): boolean;
+  isSome(): boolean;
+  readonly value: T | undefined | null;
+
+  static from<F>(value: F): Option<F>;
+
+  static none(): Option<null>;
+}
+```
+
 ## Commands
 
 ## Contributing

@@ -38,7 +38,7 @@ declare module '@json-walker/core' {
 
   class Walker {
     constructor(object: unknown);
-    next(): Option<WalkerMetadata>;
+    nextStep(): Option<WalkerMetadata>;
   }
 
   class IterableWalker implements Iterator<unknown> {

@@ -32,22 +32,22 @@ describe('core', () => {
     });
   });
 
-  describe('next', () => {
-    test('next should be present on the instantiated Walker', () => {
+  describe('nextStep', () => {
+    test('nextStep should be present on the instantiated Walker', () => {
       // Arrange
       const walker = new Walker('');
 
       // Assert
-      expect(walker.next).toBeDefined();
-      expect(walker.next).toStrictEqual(expect.any(Function));
+      expect(walker.nextStep).toBeDefined();
+      expect(walker.nextStep).toStrictEqual(expect.any(Function));
     });
 
-    test('next should return an Option', () => {
+    test('nextStep should return an Option', () => {
       // Arrange
       const walker = new Walker('');
 
       // Assert
-      expect(walker.next() instanceof Option).toBeTruthy();
+      expect(walker.nextStep() instanceof Option).toBeTruthy();
     });
   });
 
@@ -58,7 +58,7 @@ describe('core', () => {
       let optionalWalkerMetadata;
 
       do {
-        optionalWalkerMetadata = walker.next();
+        optionalWalkerMetadata = walker.nextStep();
 
         if (optionalWalkerMetadata.isSome()) {
           properties.push({

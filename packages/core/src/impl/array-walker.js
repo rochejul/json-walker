@@ -19,9 +19,9 @@ export class ArrayWalker {
     }
   }
 
-  next() {
+  nextStep() {
     if (this.#walker) {
-      this.#lastOptionalWalkerMetadata = this.#walker.next();
+      this.#lastOptionalWalkerMetadata = this.#walker.nextStep();
 
       if (this.#lastOptionalWalkerMetadata.isSome()) {
         return this.#lastOptionalWalkerMetadata;
@@ -45,7 +45,7 @@ export class ArrayWalker {
 
       this.#walker = getWalker({ value, currentWalkerPath: walkerPath });
 
-      this.#lastOptionalWalkerMetadata = this.#walker.next();
+      this.#lastOptionalWalkerMetadata = this.#walker.nextStep();
       return this.#lastOptionalWalkerMetadata;
     }
 

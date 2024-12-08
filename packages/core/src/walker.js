@@ -23,12 +23,12 @@ export class Walker {
     });
   }
 
-  next() {
+  nextStep() {
     if (this.#lastOptionalWalkerMetadata?.isNone()) {
       return this.#lastOptionalWalkerMetadata;
     }
 
-    const optionalWalkerMetadata = this.#walker.next();
+    const optionalWalkerMetadata = this.#walker.nextStep();
     this.#lastOptionalWalkerMetadata = optionalWalkerMetadata;
 
     return optionalWalkerMetadata;
@@ -51,7 +51,7 @@ export class IterableWalker {
   }
 
   next() {
-    const optionalWalkerMetadata = this.#walker.next();
+    const optionalWalkerMetadata = this.#walker.nextStep();
 
     return {
       value: optionalWalkerMetadata.value,

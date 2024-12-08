@@ -14,7 +14,7 @@ export class DeadEndWalker {
     );
   }
 
-  next() {
+  nextStep() {
     const optionalWalkerMetadata = this.#lastOptionalWalkerMetadata;
     this.#lastOptionalWalkerMetadata = Option.from(null);
     return optionalWalkerMetadata;

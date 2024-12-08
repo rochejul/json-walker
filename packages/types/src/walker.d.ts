@@ -1,4 +1,6 @@
 declare module '@json-walker/core' {
+  import type { Option } from '@json-walker/util';
+
   type WalkerPathExpressionType = 'member' | 'array';
   type WalkerPropertyType =
     | 'undefined'
@@ -59,12 +61,6 @@ declare module '@json-walker/core' {
 
   class ObjectRequiredError extends Error {
     constructor();
-  }
-
-  class Option<T> {
-    isNone(): boolean;
-    isSome(): boolean;
-    value(): T | undefined | null;
   }
 
   class Walker {

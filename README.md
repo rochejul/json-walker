@@ -135,6 +135,7 @@ const actual = grabProperties(firstLevel);
 - `npm run dev:format:check`: Check files format over packages
 - `npm run dev:linting`: Lint files over packages
 - `npm run dev:styling`: Format and lint files over packages
+- `npm run dev:publish`: Publish all the packages on npm registry
 - `npm test`: Run tests over packages
 - `npm run test:coverage`: Run tests over packages and see coverage reports
 

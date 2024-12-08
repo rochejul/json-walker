@@ -24,5 +24,5 @@ export default {
       file: 'build/bundle.amd.js',
     },
   ],
-  plugins: [nodeResolve()],
+  plugins: [nodeResolve({ browser: true })],
 };

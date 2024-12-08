@@ -1,6 +1,13 @@
 (function () {
   'use strict';
 
+  class ObjectRequiredError extends Error {
+    constructor() {
+      super();
+      Error.captureStackTrace(this, ObjectRequiredError);
+    }
+  }
+
   /**
    *
    * @param {*} value
@@ -281,7 +288,7 @@
     WEAKSET: 'weakset',
   });
 
-  [
+  const getPropertyTypePredicates = [
     {
       predicate: isUndefined,
       propertyType: WalkerPropertyType.UNDEFINED,
@@ -359,5 +366,416 @@
       propertyType: WalkerPropertyType.WEAKSET,
     },
   ];
+
+  /**
+   *
+   * @param {*} value
+   * @returns {string}
+   */
+  function getPropertyType(value) {
+    const predicate = getPropertyTypePredicates.find(({ predicate }) =>
+      predicate(value),
+    );
+
+    return predicate?.propertyType ?? WalkerPropertyType.OBJECT;
+  }
+
+  const WalkerPathExpressionType = Object.freeze({
+    ARRAY: 'array',
+    MEMBER: 'member',
+  });
+
+  class WalkerPathExpression {
+    /**
+     * @type {string}
+     */
+    #type;
+
+    /**
+     * @type {*}
+     */
+    #expression;
+
+    /**
+     *
+     * @param {{ type: string, expression: * }} param
+     */
+    constructor({ type, expression }) {
+      this.#type = type;
+      this.#expression = expression;
+    }
+
+    /**
+     * @returns {string}
+     */
+    get expression() {
+      return this.#expression;
+    }
+
+    /**
+     * @returns {*}
+     */
+    get type() {
+      return this.#type;
+    }
+  }
+
+  class MemberWalkerPathExpression extends WalkerPathExpression {
+    /**
+     *
+     * @param {{ expression: string }} param
+     */
+    constructor({ expression }) {
+      super({ type: WalkerPathExpressionType.MEMBER, expression });
+    }
+
+    /**
+     * @returns {string}
+     */
+    toString() {
+      return `${this.expression}`;
+    }
+  }
+
+  class ArrayWalkerPathExpression extends WalkerPathExpression {
+    /**
+     *
+     * @param {{ expression: number }} param
+     */
+    constructor({ expression }) {
+      super({ type: WalkerPathExpressionType.ARRAY, expression });
+    }
+
+    /**
+     * @returns {string}
+     */
+    toString() {
+      return `[${this.expression}]`;
+    }
+  }
+
+  class WalkerPath {
+    /**
+     * @type {WalkerPathExpression[]}
+     */
+    #paths;
+
+    /**
+     *
+     * @param {{ paths: WalkerPathExpression[] }} param
+     */
+    constructor({ paths }) {
+      this.#paths = Object.freeze(paths);
+    }
+
+    /**
+     * @returns {WalkerPathExpression[]}
+     */
+    get paths() {
+      return this.#paths;
+    }
+
+    /**
+     *
+     * @returns {boolean}
+     */
+    isRootLevel() {
+      return this.#paths.length === 0;
+    }
+
+    /**
+     * @returns {string}
+     */
+    toString() {
+      let path = '';
+
+      for (const pathExpression of this.paths) {
+        if (pathExpression.type === WalkerPathExpressionType.ARRAY) {
+          path += pathExpression.toString();
+        } else {
+          path +=
+            path.length === 0
+              ? pathExpression.toString()
+              : `.${pathExpression.toString()}`;
+        }
+      }
+
+      return path;
+    }
+  }
+
+  class WalkerMetadata {
+    /**
+     * @type {string}
+     */
+    #propertyName;
+
+    /**
+     * @type {*}
+     */
+    #propertyValue;
+
+    /**
+     * @type {string}
+     */
+    #propertyType;
+
+    /**
+     * @type {WalkerPath}
+     */
+    #propertyPath;
+
+    /**
+     *
+     * @param {{ propertyName: string, propertyValue: *, propertyPath: WalkerPath }} param
+     */
+    constructor({ propertyName, propertyValue, propertyPath }) {
+      this.#propertyName = propertyName;
+      this.#propertyValue = propertyValue;
+      this.#propertyPath = propertyPath;
+      this.#propertyType = getPropertyType(propertyValue);
+    }
+
+    /**
+     * @returns {string}
+     */
+    get propertyName() {
+      return this.#propertyName;
+    }
+
+    /**
+     * @returns {*}
+     */
+    get propertyValue() {
+      return this.#propertyValue;
+    }
+
+    /**
+     * @returns {string}
+     */
+    get propertyType() {
+      return this.#propertyType;
+    }
+
+    /**
+     * @returns {WalkerPath}
+     */
+    get propertyPath() {
+      return this.#propertyPath;
+    }
+  }
+
+  /**
+   * @param {{ value: *, currentWalkerPath: WalkerPath }} param
+   * @returns {Walker}
+   */
+  function getWalker({ value, currentWalkerPath }) {
+    const propertyType = getPropertyType(value);
+
+    if (WalkerPropertyType.ARRAY === propertyType) {
+      return new ArrayWalker({ value, currentWalkerPath });
+    }
+
+    if (WalkerPropertyType.OBJECT === propertyType) {
+      return new ObjectWalker({ value, currentWalkerPath });
+    }
+
+    return new DeadEndWalker({ value, currentWalkerPath });
+  }
+
+  class ArrayWalker {
+    #array;
+    #currentWalkerPath;
+    #index = 0;
+    #walker;
+    #lastOptionalWalkerMetadata;
+
+    constructor({ value, currentWalkerPath }) {
+      this.#array = value;
+      this.#currentWalkerPath = currentWalkerPath;
+
+      if (!currentWalkerPath.isRootLevel()) {
+        this.#walker = new DeadEndWalker({ value, currentWalkerPath });
+      }
+    }
+
+    nextStep() {
+      if (this.#walker) {
+        this.#lastOptionalWalkerMetadata = this.#walker.nextStep();
+
+        if (this.#lastOptionalWalkerMetadata.isSome()) {
+          return this.#lastOptionalWalkerMetadata;
+        }
+
+        this.#walker = null;
+      }
+
+      if (this.#index < this.#array.length) {
+        const currentIndex = this.#index;
+        const value = this.#array[this.#index];
+        this.#index += 1;
+
+        const { paths } = this.#currentWalkerPath;
+        const walkerPath = new WalkerPath({
+          paths: [
+            ...paths,
+            new ArrayWalkerPathExpression({ expression: currentIndex }),
+          ],
+        });
+
+        this.#walker = getWalker({ value, currentWalkerPath: walkerPath });
+
+        this.#lastOptionalWalkerMetadata = this.#walker.nextStep();
+        return this.#lastOptionalWalkerMetadata;
+      }
+
+      return Option.none();
+    }
+  }
+
+  class DeadEndWalker {
+    #lastOptionalWalkerMetadata;
+
+    constructor({ value, currentWalkerPath }) {
+      this.#lastOptionalWalkerMetadata = Option.from(
+        new WalkerMetadata({
+          propertyName: '',
+          propertyValue: value,
+          propertyPath: currentWalkerPath,
+        }),
+      );
+    }
+
+    nextStep() {
+      const optionalWalkerMetadata = this.#lastOptionalWalkerMetadata;
+      this.#lastOptionalWalkerMetadata = Option.none();
+      return optionalWalkerMetadata;
+    }
+  }
+
+  class ObjectWalker {
+    #array;
+    #object;
+    #currentWalkerPath;
+    #index = 0;
+    #walker;
+    #lastOptionalWalkerMetadata;
+
+    constructor({ value, currentWalkerPath }) {
+      this.#object = value;
+      this.#array = Object.getOwnPropertyNames(value);
+      this.#currentWalkerPath = currentWalkerPath;
+
+      if (!currentWalkerPath.isRootLevel()) {
+        this.#walker = new DeadEndWalker({ value, currentWalkerPath });
+      }
+    }
+
+    nextStep() {
+      if (this.#walker) {
+        this.#lastOptionalWalkerMetadata = this.#walker.nextStep();
+
+        if (this.#lastOptionalWalkerMetadata.isSome()) {
+          return this.#lastOptionalWalkerMetadata;
+        }
+
+        this.#walker = null;
+      }
+
+      if (this.#index < this.#array.length) {
+        const propertyName = this.#array[this.#index];
+        const value = this.#object[propertyName];
+        this.#index += 1;
+
+        const { paths } = this.#currentWalkerPath;
+        const walkerPath = new WalkerPath({
+          paths: [
+            ...paths,
+            new MemberWalkerPathExpression({ expression: propertyName }),
+          ],
+        });
+
+        this.#walker = getWalker({ value, currentWalkerPath: walkerPath });
+
+        this.#lastOptionalWalkerMetadata = this.#walker.nextStep();
+        return this.#lastOptionalWalkerMetadata;
+      }
+
+      return Option.from(null);
+    }
+  }
+
+  class Walker {
+    /**
+     * @type {Walker}
+     */
+    #walker;
+
+    /**
+     * @type {Option<WalkerMetadata>}
+     */
+    #lastOptionalWalkerMetadata;
+
+    /**
+     * @param {*} value
+     * @throws {ObjectRequiredError}
+     */
+    constructor(value) {
+      if (value === undefined || value === null) {
+        throw new ObjectRequiredError();
+      }
+
+      this.#walker = getWalker({
+        value,
+        currentWalkerPath: new WalkerPath({ paths: [] }),
+      });
+    }
+
+    /**
+     * @returns {Option<WalkerMetadata>}
+     */
+    nextStep() {
+      if (this.#lastOptionalWalkerMetadata?.isNone()) {
+        return this.#lastOptionalWalkerMetadata;
+      }
+
+      const optionalWalkerMetadata = this.#walker.nextStep();
+      this.#lastOptionalWalkerMetadata = optionalWalkerMetadata;
+
+      return optionalWalkerMetadata;
+    }
+  }
+
+  class IterableWalker {
+    #walker;
+
+    /**
+     * @param {*} value
+     * @throws {ObjectRequiredError}
+     */
+    constructor(value) {
+      if (value === undefined || value === null) {
+        throw new ObjectRequiredError();
+      }
+
+      this.#walker = new Walker(value);
+    }
+
+    next() {
+      const optionalWalkerMetadata = this.#walker.nextStep();
+
+      return {
+        value: optionalWalkerMetadata.value,
+        done: optionalWalkerMetadata.isNone(),
+      };
+    }
+
+    [Symbol.iterator]() {
+      return this;
+    }
+  }
+
+  globalThis.Walker = Walker;
+  globalThis.IterableWalker = IterableWalker;
 
 })();

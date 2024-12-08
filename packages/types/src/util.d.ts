@@ -31,6 +31,8 @@ declare module '@json-walker/util' {
     readonly value: T | undefined | null;
 
     static from<F>(value: F): Option<F>;
+
+    static none(): Option<null>;
   }
 
   function getPropertyType(value: unknown): WalkerPropertyType;

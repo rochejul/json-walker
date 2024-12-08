@@ -49,6 +49,6 @@ export class ArrayWalker {
       return this.#lastOptionalWalkerMetadata;
     }
 
-    return Option.from(null);
+    return Option.none();
   }
 }

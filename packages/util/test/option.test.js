@@ -32,6 +32,33 @@ describe('util/option', () => {
       // Assert
       expect(actual instanceof Option).toBeTruthy();
     });
+
+    test('it allows value', () => {
+      // Act
+      const actual = Option.from('some value');
+
+      // Assert
+      expect(actual instanceof Option).toBeTruthy();
+    });
+  });
+
+  describe('none method', () => {
+    test('it returns an Option', () => {
+      // Act
+      const actual = Option.none();
+
+      // Assert
+      expect(actual instanceof Option).toBeTruthy();
+    });
+
+    test('it returns null', () => {
+      // Act
+      const actual = Option.none();
+
+      // Assert
+      expect(actual.isNone()).toBeTruthy();
+      expect(actual.value).toBeNull();
+    });
   });
 
   describe('instance', () => {

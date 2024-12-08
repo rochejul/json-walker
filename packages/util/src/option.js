@@ -9,6 +9,10 @@ class Option {
   static from(value) {
     return Object.seal(new PrivateOption(value));
   }
+
+  static none() {
+    return Object.seal(new PrivateOption(null));
+  }
 }
 
 class PrivateOption {

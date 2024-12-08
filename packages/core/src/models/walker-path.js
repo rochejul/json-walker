@@ -52,6 +52,10 @@ export class WalkerPath {
     return this.#paths;
   }
 
+  isRootLevel() {
+    return this.#paths.length === 0;
+  }
+
   toString() {
     let path = '';
 

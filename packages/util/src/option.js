@@ -1,4 +1,5 @@
 import { IllegalInstantationError } from './exceptions/illegal-instantion-error';
+import { isNull, isUndefined } from './check';
 
 class Option {
   constructor() {
@@ -18,7 +19,7 @@ class PrivateOption {
   }
 
   isNone() {
-    return this.#value === null || this.#value === undefined;
+    return isNull(this.#value) || isUndefined(this.#value);
   }
 
   isSome() {

@@ -21,6 +21,7 @@ declare module '@json-walker/core' {
 
   interface WalkerPath {
     readonly paths: WalkerPathExpression[];
+    isRootLevel(): boolean;
     toString(): string;
   }
 

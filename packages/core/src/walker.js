@@ -1,23 +1,36 @@
 import { ObjectRequiredError } from './exceptions/object-required-error';
+import { getWalker } from './impl/strategy';
+import { WalkerPath } from './models/walker-path';
 
 export { ObjectRequiredError } from './exceptions/object-required-error';
 
 export class Walker {
-  //#object;
+  #walker;
+  #lastOptionalWalkerMetadata;
 
   /**
-   * @param {*} object
+   * @param {*} value
    * @throws {ObjectRequiredError}
    */
-  constructor(object) {
-    if (object === undefined || object === null) {
+  constructor(value) {
+    if (value === undefined || value === null) {
       throw new ObjectRequiredError();
     }
 
-    //this.#object = object;
+    this.#walker = getWalker({
+      value,
+      currentWalkerPath: new WalkerPath({ paths: [] }),
+    });
   }
 
   next() {
-    return null;
+    if (this.#lastOptionalWalkerMetadata?.isNone()) {
+      return this.#lastOptionalWalkerMetadata;
+    }
+
+    const optionalWalkerMetadata = this.#walker.next();
+    this.#lastOptionalWalkerMetadata = optionalWalkerMetadata;
+
+    return optionalWalkerMetadata;
   }
 }

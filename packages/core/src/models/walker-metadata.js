@@ -29,21 +29,3 @@ export class WalkerMetadata {
     return this.#propertyPath;
   }
 }
-
-class SubWalkerMetadata extends WalkerMetadata {
-  #walker;
-
-  constructor({ propertyName, propertyValue, propertyPath, walker }) {
-    super({ propertyName, propertyValue, propertyPath });
-
-    this.#walker = walker;
-  }
-
-  get walker() {
-    return this.#walker;
-  }
-}
-
-export class ObjectWalkerMetadata extends SubWalkerMetadata {}
-
-export class ArrayWalkerMetadata extends SubWalkerMetadata {}

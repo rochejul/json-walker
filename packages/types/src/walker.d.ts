@@ -25,27 +25,12 @@ declare module '@json-walker/core' {
     toString(): string;
   }
 
-  interface BaseWalkerMetadata {
+  interface WalkerMetadata {
     readonly propertyName: string;
     readonly propertyPath: WalkerPath;
     readonly propertyType: WalkerPropertyType;
     readonly propertyValue: unknown;
   }
-
-  interface ObjectWalkerMetadata extends BaseWalkerMetadata {
-    readonly propertyType: 'object';
-    readonly walker: Walker;
-  }
-
-  interface ArrayWalkerMetadata extends BaseWalkerMetadata {
-    readonly propertyType: 'array';
-    readonly walker: Walker;
-  }
-
-  type WalkerMetadata =
-    | BaseWalkerMetadata
-    | ObjectWalkerMetadata
-    | ArrayWalkerMetadata;
 
   class ObjectRequiredError extends Error {
     constructor();
@@ -70,8 +55,5 @@ declare module '@json-walker/core' {
     ArrayWalkerPathExpression,
     WalkerPathExpressionType,
     WalkerMetadata,
-    BaseWalkerMetadata,
-    ObjectWalkerMetadata,
-    ArrayWalkerMetadata,
   };
 }

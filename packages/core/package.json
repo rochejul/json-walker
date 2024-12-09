@@ -34,10 +34,10 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@json-walker/jest-utils": "*",
-    "@json-walker/util": "*"
+    "@json-walker/jest-utils": "*"
   },
   "dependencies": {
-    "@json-walker/types": "1.0.0"
+    "@json-walker/types": "1.0.0",
+    "@json-walker/util": "1.0.0"
   }
 }

@@ -1,7 +1,6 @@
 {
   "name": "@json-walker/util",
   "version": "1.0.0",
-  "private": "true",
   "type": "module",
   "description": "Set of utilities libraries",
   "main": "./src/index.js",
@@ -30,6 +29,9 @@
     "type": "git",
     "url": "https://github.com/rochejul/json-walker.git",
     "directory": "packages/util"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "@json-walker/jest-utils": "*"

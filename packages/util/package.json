@@ -1,6 +1,6 @@
 {
   "name": "@json-walker/util",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "Set of utilities libraries",
   "main": "./src/index.js",
@@ -37,6 +37,6 @@
     "@json-walker/jest-utils": "*"
   },
   "dependencies": {
-    "@json-walker/types": "1.0.0"
+    "@json-walker/types": "1.0.1"
   }
 }

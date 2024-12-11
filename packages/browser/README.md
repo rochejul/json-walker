@@ -40,6 +40,8 @@ Or from the HTML `script` tag:
 
 You could find in the [build folder](./build/) various targets
 
+And for the Walker, please have a look on [the Walker's usage in Core module](../core//README.md#usage).
+
 ## Commands
 
 - `npm run dev:build`: Bundle the package for various targets

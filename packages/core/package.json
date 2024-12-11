@@ -39,5 +39,15 @@
   "dependencies": {
     "@json-walker/types": "1.0.1",
     "@json-walker/util": "1.0.1"
+  },
+  "keywords": [
+    "JSON",
+    "walker",
+    "core"
+  ],
+  "author": {
+    "name": "Julien Roche",
+    "email": "roche.jul@gmail.com",
+    "url": "https://julienroche.blogspot.com/"
   }
 }

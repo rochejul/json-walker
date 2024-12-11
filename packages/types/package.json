@@ -15,11 +15,6 @@
   },
   "scripts": {},
   "//": {},
-  "keywords": [
-    "Typescript",
-    "typings",
-    "types"
-  ],
   "license": "MIT",
   "devDependencies": {
     "check-dts": "0.8.2",
@@ -39,5 +34,17 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "keywords": [
+    "JSON",
+    "walker",
+    "Typescript",
+    "typings",
+    "types"
+  ],
+  "author": {
+    "name": "Julien Roche",
+    "email": "roche.jul@gmail.com",
+    "url": "https://julienroche.blogspot.com/"
   }
 }

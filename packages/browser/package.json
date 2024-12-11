@@ -47,5 +47,15 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "15.2.3",
     "rollup": "4.28.1"
+  },
+  "keywords": [
+    "JSON",
+    "walker",
+    "browser"
+  ],
+  "author": {
+    "name": "Julien Roche",
+    "email": "roche.jul@gmail.com",
+    "url": "https://julienroche.blogspot.com/"
   }
 }

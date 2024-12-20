@@ -774,5 +774,5 @@ class IterableWalker {
   }
 }
 
-globalThis.Walker = Walker;
-globalThis.IterableWalker = IterableWalker;
+exports.IterableWalker = IterableWalker;
+exports.Walker = Walker;

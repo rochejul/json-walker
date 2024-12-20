@@ -1,4 +1,4 @@
-define((function () { 'use strict';
+define(['exports'], (function (exports) { 'use strict';
 
   class ObjectRequiredError extends Error {
     constructor() {
@@ -774,7 +774,7 @@ define((function () { 'use strict';
     }
   }
 
-  globalThis.Walker = Walker;
-  globalThis.IterableWalker = IterableWalker;
+  exports.IterableWalker = IterableWalker;
+  exports.Walker = Walker;
 
 }));

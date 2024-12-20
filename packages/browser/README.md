@@ -26,7 +26,7 @@ Package to load the JSON walker into a browser
 
 ## Usage
 
-Ensure to import the polyfill, through an import:
+Ensure to import the library, through an import:
 
 ```js
 import * as walker from '@wjson-walker/browser';
@@ -39,6 +39,8 @@ Or from the HTML `script` tag:
 ```
 
 You could find in the [build folder](./build/) various targets
+
+If you don't use ES6 imports, you could access on the global scope with `JsonWalker`
 
 And for the Walker, please have a look on [the Walker's usage in Core module](../core//README.md#usage).
 

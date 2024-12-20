@@ -1,4 +1,4 @@
-(function () {
+var JsonWalker = (function (exports) {
   'use strict';
 
   class ObjectRequiredError extends Error {
@@ -775,7 +775,9 @@
     }
   }
 
-  globalThis.Walker = Walker;
-  globalThis.IterableWalker = IterableWalker;
+  exports.IterableWalker = IterableWalker;
+  exports.Walker = Walker;
 
-})();
+  return exports;
+
+})({});

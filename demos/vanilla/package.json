@@ -1,0 +1,30 @@
+{
+  "name": "@json-walker/demo-vanilla",
+  "version": "1.0.1",
+  "description": "Demo app",
+  "main": "eslint.config.js",
+  "source": "index.html",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "npx parcel index.html --port 3555 --https"
+  },
+  "//": {
+    "start": "Run a local web server (with https) to show the project"
+  },
+  "devDependencies": {
+    "parcel": "2.12.0"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "^16.10.0 || ^18.12.0 || >=20.0.0"
+  },
+  "volta": {
+    "node": "20.15.0",
+    "npm": "10.7.0"
+  },
+  "dependencies": {
+    "@json-walker/browser": "1.0.1",
+    "@json-walker/types": "1.0.1"
+  }
+}

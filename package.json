@@ -5,7 +5,8 @@
   "private": true,
   "description": "JSON walker api (nodejs/web) to walk through EcmaScript objects.",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "demos/vanilla"
   ],
   "scripts": {
     "dev:audit": "npm audit --workspaces --include-workspace-root",

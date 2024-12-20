@@ -1,0 +1,46 @@
+.app,
+.app__body {
+  border: none;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.app__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.app__body__player {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+.app__body__player__editor,
+.app__body__player__preview {
+  flex: 1 1 auto;
+}
+
+.app__body__player__editor {
+  resize: none;
+}
+
+.app__body__player__preview {
+  overflow: auto;
+}
+
+.app__body__footer {
+  display: flex;
+  height: 5rem;
+  align-self: center;
+  justify-items: center;
+}
+
+.app__body__footer__walk {
+  height: 2rem;
+  width: 5rem;
+}

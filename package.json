@@ -9,6 +9,14 @@
     "demos/vanilla"
   ],
   "scripts": {
+    "bump:release": "npmversion --unpreid",
+    "bump:major": "npmversion --increment major",
+    "bump:minor": "npmversion --increment minor",
+    "bump:patch": "npmversion --increment patch",
+    "bump:major:beta": "npmversion --increment major --preid beta",
+    "bump:minor:beta": "npmversion --increment minor --preid beta",
+    "bump:patch:beta": "npmversion --increment patch --preid beta",
+    "bump:prerelease:beta": "npmversion --increment prerelease --preid beta",
     "dev:audit": "npm audit --workspaces --include-workspace-root",
     "dev:build": "npm run dev:build --workspaces --if-present",
     "dev:check": "npm test && npm run dev:styling",
@@ -41,6 +49,7 @@
     "eslint-plugin-jest": "28.9.0",
     "eslint-plugin-prettier": "5.2.1",
     "husky": "9.1.7",
+    "npmversion": "2.0.2",
     "prettier": "3.4.2"
   },
   "overrides": {

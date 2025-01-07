@@ -66,10 +66,15 @@ npm install --save @json-walker/core --workspace=packages/browse
 
 #### Private package
 
-If you need a private package on another one, please edit in the target package's `package.json` file the `peerDependencies` liek so:
+If you need a private package on another one, please edit in the target package's `package.json` file the `peerDependencies` like so:
 
 ```json
 "peerDependencies": {
     "@json-walker/jest-utils": "*"
-}
+},
+"peerDependenciesMeta": {
+    "@json-walker/jest-utils": {
+        "optional": true
+    }
+},
 ```

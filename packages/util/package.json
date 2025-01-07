@@ -36,6 +36,11 @@
   "peerDependencies": {
     "@json-walker/jest-utils": "*"
   },
+  "peerDependenciesMeta": {
+    "@json-walker/jest-utils": {
+      "optional": true
+    }
+  },
   "dependencies": {
     "@json-walker/types": "1.0.1"
   },

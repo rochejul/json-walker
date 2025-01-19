@@ -1,6 +1,6 @@
 {
   "name": "@json-walker/core",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "description": "Core implementation of the walker",
   "main": "./src/walker.js",
@@ -42,8 +42,8 @@
     }
   },
   "dependencies": {
-    "@json-walker/types": "1.0.3",
-    "@json-walker/util": "1.0.3"
+    "@json-walker/types": "1.0.4",
+    "@json-walker/util": "1.0.4"
   },
   "keywords": [
     "JSON",

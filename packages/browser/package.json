@@ -1,6 +1,6 @@
 {
   "name": "@json-walker/browser",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./src/index.js",
   "type": "module",
   "description": "Package to load the JSON walker into a browser",
@@ -41,8 +41,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@json-walker/core": "1.0.3",
-    "@json-walker/types": "1.0.3"
+    "@json-walker/core": "1.0.4",
+    "@json-walker/types": "1.0.4"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "15.2.3",

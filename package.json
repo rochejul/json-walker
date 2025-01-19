@@ -1,6 +1,6 @@
 {
   "name": "json-walker",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "private": true,
   "description": "JSON walker api (nodejs/web) to walk through EcmaScript objects.",

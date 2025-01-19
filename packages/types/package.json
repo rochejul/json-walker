@@ -1,6 +1,6 @@
 {
   "name": "@json-walker/types",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Typescript definition of the polyfill",
   "types": "./src/index.d.ts",
   "files": [

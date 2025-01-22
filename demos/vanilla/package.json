@@ -24,7 +24,7 @@
     "npm": "10.7.0"
   },
   "dependencies": {
-    "@json-walker/browser": "1.0.4",
-    "@json-walker/types": "1.0.4"
+    "@json-walker/browser": "latest",
+    "@json-walker/types": "latest"
   }
 }

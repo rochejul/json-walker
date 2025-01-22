@@ -1,6 +1,6 @@
 {
   "name": "@json-walker/demo-vanilla",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Demo app",
   "main": "eslint.config.js",
   "source": "index.html",
@@ -24,7 +24,7 @@
     "npm": "10.7.0"
   },
   "dependencies": {
-    "@json-walker/browser": "latest",
-    "@json-walker/types": "latest"
+    "@json-walker/browser": "1.0.5",
+    "@json-walker/types": "1.0.5"
   }
 }

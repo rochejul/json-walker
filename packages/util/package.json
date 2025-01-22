@@ -1,6 +1,6 @@
 {
   "name": "@json-walker/util",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "description": "Set of utilities libraries",
   "main": "./src/index.js",
@@ -42,7 +42,7 @@
     }
   },
   "dependencies": {
-    "@json-walker/types": "1.0.4"
+    "@json-walker/types": "1.0.5"
   },
   "keywords": [
     "JSON",
